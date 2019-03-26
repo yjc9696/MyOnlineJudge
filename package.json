@@ -1,0 +1,22 @@
+{
+  "name": "myonlinejudge",
+  "version": "1.0.0",
+  "description": "毕业设计，主要内容为在线评测",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yjc9696/MyOnlineJudge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yjc9696/MyOnlineJudge/issues"
+  },
+  "homepage": "https://github.com/yjc9696/MyOnlineJudge#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
