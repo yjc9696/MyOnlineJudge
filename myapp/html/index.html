@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			
+			img {
+				width: 100%;
+			}
+			
+			.btn {
+				font-size: x-small;
+			}
+			
+			.m {
+				font-size: 120px;
+			}
+			
+			@media (max-width: 500px) {
+				.m {
+					font-size: medium;
+				}
+			}
+		</style>
+	</head>
+
+  <body>
+  		<div>
+			helloworld!
+		</div>
+		<div class="container">
+			<form id="myform" enctype='multipart/form-data' name="myform" action="sql/insert" method="post" target="nm_iframe" >
+				<div class="form-group">
+					<label for="code">Code</label>
+					<input type="file" class="form-control" id="code" name="code" placeholder="code">
+				</div>
+			</form>
+			<button id="btn-submit" onclick="Submit()">Submit</button>
+			<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+		</div>
+		<script>
+			function aftersubmit() {
+
+			}
+
+			function Submit() {
+				var myform = document.getElementById("myform");
+				var formData = new FormData(document.querySelector("form"));
+				console.log(formData);
+				console.log(document.querySelector("form"));
+				var xmlHttpRequest = new XMLHttpRequest();
+				alert('提交成功！请耐心等待');
+				xmlHttpRequest.open('post', 'sql/insert');
+				xmlHttpRequest.onload = function(resp) {
+					if(xmlHttpRequest.status == 200) {
+						alert("结果为"+xmlHttpRequest.response);
+					} else {
+						alert('Error:' + xmlHttpRequest.status);
+					}
+				};
+				xmlHttpRequest.send(formData);
+			}
+		</script>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="jquery/jquery-1.11.0.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>
