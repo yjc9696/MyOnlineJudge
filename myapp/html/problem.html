@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+
+			img {
+				width: 100%;
+			}
+
+			.btn {
+				font-size: x-small;
+			}
+
+			.m {
+				font-size: 120px;
+			}
+
+			@media (max-width: 500px) {
+				.m {
+					font-size: medium;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						 aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="./"><i class="icon-home"></i>MY-OnlineJudge</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+
+							<li class="active"><a href="problemset.html"> 问题集</a></li>
+							<li><a href="problemset.html"> 学习园</a></li>
+
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="profile">登录</span><span
+									 class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="login.html">登录</a></li>&nbsp;<li><a href="register.html">注册</a></li>&nbsp;
+									<!--<li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+				</div>
+				<!--/.container-fluid -->
+			</nav>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<title>1001</title>
+				<center>
+					<h3 id="nowtitle">1001</h3><span class="green">时间限制: </span>1 Sec&nbsp;&nbsp;<span class="green">内存限制: </span>64
+					MB<br>
+
+				</center>
+			</div>
+			<!--StartMarkForVirtualJudge-->
+			<div class="panel panel-body">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							题目描述 </h4>
+					</div>
+					<div class="panel-body content" id="description">
+						Zombies love to eat brains. Yum. The following n lines each represent a data set. Each data set will be formatted
+						according to the following description: A single data set consists of a line "X Y", where X is the number of
+						brains the zombie eats and Y is the number of brains the zombie requires to stay alive. </div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							输入 </h4>
+					</div>
+					<div class="panel-body content" id="input">
+						The first line contains a single integer n indicating the number of data sets. </div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							输出 </h4>
+					</div>
+					<div class="panel-body content" id="output">
+						For each data set, there will be exactly one line of output. This line will be "MMM BRAINS" if the number of
+						brains the zombie eats is greater than or equal to the number of brains the zombie requires to stay alive.
+						Otherwise, the line will be "NO BRAINS". </div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							样例输入
+							<a href="javascript:CopyToClipboard($('#sampleinput').text())">Copy</a>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<pre class="content"><span id="sampleinput" class="sampledata">3
+4 5
+3 3
+4 3
+</span></pre>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							样例输出 <a href="javascript:CopyToClipboard($('#sampleoutput').text())">Copy</a>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<pre class="content"><span id="sampleoutput" class="sampledata">NO BRAINS
+MMM BRAINS
+MMM BRAINS</span></pre>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							类型
+						</h4>
+					</div>
+					<div class="panel-body content" id="p_type">
+						<a href="">简单题</a>&nbsp;
+					</div>
+				</div>
+
+			</div>
+			<div class="container">
+				<form id="myform" enctype='multipart/form-data' name="myform" action="sql/insert" method="post" target="nm_iframe">
+					<div class="form-group">
+						<label for="code">Code</label>
+						<input type="file" class="form-control" id="code" name="code" placeholder="code">
+					</div>
+				</form>
+				<button id="btn-submit" onclick="Submit()" class="center-block">Submit</button>
+				<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column center">
+
+					<p class="center">
+						<hr>
+						此网站由杨嘉诚独立完成，任何问题请发送邮件至616530803@qq.com，谢谢合作。
+					</p>
+				</div>
+			</div>
+		</div>
+		<script>
+			var id = window.location.search;
+			id = id.slice(4);
+			console.log(id);
+			let req = new XMLHttpRequest();
+			
+			req.open("get", "sql/problem?pid="+id, true);
+			req.onload = function(e) {
+				var detail = JSON.parse(req.response)[0];
+				console.log(detail);
+				document.getElementById("nowtitle").textContent = detail.title;
+				document.getElementById("description").textContent = detail.description;
+				document.getElementById("input").textContent = detail.input;
+				document.getElementById("output").textContent = detail.output;
+				document.getElementById("sampleinput").textContent = detail.sampleinput;
+				document.getElementById("sampleoutput").textContent =detail.sampleoutput;
+				document.getElementById("p_type").textContent = detail.type;
+				}
+			req.setRequestHeader("Content-Type", "application/json");
+			req.send("");
+		</script>
+		<script>
+			function CopyToClipboard(input) {
+				var textToClipboard = input;
+
+				var success = true;
+				if (window.clipboardData) { // Internet Explorer
+					window.clipboardData.setData("Text", textToClipboard);
+				} else {
+					// create a temporary element for the execCommand method
+					var forExecElement = CreateElementForExecCommand(textToClipboard);
+
+					/* Select the contents of the element 
+					(the execCommand for 'copy' method works on the selection) */
+					SelectContent(forExecElement);
+
+					var supported = true;
+
+					// UniversalXPConnect privilege is required for clipboard access in Firefox
+					try {
+						if (window.netscape && netscape.security) {
+							netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+						}
+
+						// Copy the selected content to the clipboard
+						// Works in Firefox and in Safari before version 5
+						success = document.execCommand("copy", false, null);
+					} catch (e) {
+						success = false;
+					}
+
+					// remove the temporary element
+					document.body.removeChild(forExecElement);
+				}
+
+				if (success) {
+					alert("The text is on the clipboard, try to paste it!");
+				} else {
+					alert("Your browser doesn't allow clipboard access!");
+				}
+			}
+			function CreateElementForExecCommand (textToClipboard) {
+			var forExecElement = document.createElement ("pre");
+			    // place outside the visible area
+			forExecElement.style.position = "absolute";
+			forExecElement.style.left = "-10000px";
+			forExecElement.style.top = "-10000px";
+			    // write the necessary text into the element and append to the document
+			forExecElement.textContent = textToClipboard;
+			document.body.appendChild (forExecElement);
+			    // the contentEditable mode is necessary for the  execCommand method in Firefox
+			forExecElement.contentEditable = true;
+			 
+			return forExecElement;
+			}
+			function SelectContent (element) {
+			    // first create a range
+			var rangeToSelect = document.createRange ();
+			rangeToSelect.selectNodeContents (element);
+			 
+			    // select the contents
+			var selection = window.getSelection ();
+			selection.removeAllRanges ();
+			selection.addRange (rangeToSelect);
+			}
+		</script>
+		<script>
+			function aftersubmit() {
+		
+			}
+		
+			function Submit() {
+				var myform = document.getElementById("myform");
+				var formData = new FormData(document.querySelector("form"));
+				console.log(formData);
+				console.log(document.querySelector("form"));
+				var xmlHttpRequest = new XMLHttpRequest();
+				alert('提交成功！请耐心等待');
+				xmlHttpRequest.open('post', 'sql/submit?id='+id);
+				xmlHttpRequest.onload = function(resp) {
+					if (xmlHttpRequest.status == 200) {
+						alert("结果为" + xmlHttpRequest.response);
+					} else {
+						alert('Error:' + xmlHttpRequest.status);
+					}
+				};
+				xmlHttpRequest.send(formData);
+			}
+		</script>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="jquery/jquery-1.11.0.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>
