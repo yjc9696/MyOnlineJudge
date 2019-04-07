@@ -50,7 +50,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="active"><a href="problemset.html"> 问题集</a></li>
-							<li><a href="problemset.html"> 学习园</a></li>
+							<li><a href="study.html"> 学习园</a></li>
 
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
@@ -63,7 +63,7 @@
 									<!--<li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
 								</ul>
 							</li>
-							<li id="user" display="none" style=""><a class="aa" href=""> 你好，admin</a></li>
+							<li id="user" display="none" style=""><a class="aa" href="user.html"> 你好，admin</a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -82,54 +82,47 @@
 				<center>
 					<nav id="page" class="center">
 						<ul class="pagination">
-							<li class="page-item"><a href="problemset.php?page=1">&lt;&lt;</a>
+							<li class="page-item"><a href="problemset.html?page=1">&lt;&lt;</a>
 							</li>
-							<li class="active page-item">
-								<a href="problemset.php?page=1">1</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=2">2</a></li>
+								<a href="problemset.html?page=1">1</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=3">3</a></li>
+								<a href="problemset.html?page=2">2</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=4">4</a></li>
+								<a href="problemset.html?page=3">3</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=5">5</a></li>
+								<a href="problemset.html?page=4">4</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=6">6</a></li>
+								<a href="problemset.html?page=5">5</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=7">7</a></li>
+								<a href="problemset.html?page=6">6</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=8">8</a></li>
+								<a href="problemset.html?page=7">7</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=9">9</a></li>
-							<li class="page-item"><a href="problemset.php?page=12">&gt;&gt;</a>
+								<a href="problemset.html?page=8">8</a></li>
+							<li class="page-item">
+								<a href="problemset.html?page=9">9</a></li>
+							<li class="page-item"><a href="problemset.html?page=9">&gt;&gt;</a>
 							</li>
 						</ul>
 					</nav>
 
 					<table>
-						
+
 						<tbody>
 							<tr align="center" class="evenrow">
 								<td width="5"></td>
 								<td colspan="1">
-									<form class="form-inline" action="problem.php">
-										<input class="form-control search-query" type="text" name="id" placeholder="Problem ID">
-										<button class="form-control" type="submit">Go</button>
-										<div id="csrf"><input type="hidden" name="csrf" value="9wUCpu51MWhPMuloPJeKmp8iZLigG5Ar" class="1">
-										</div>
+									<form class="form-inline" action="problem.html">
+										<input class="form-control" type="text" name="id" placeholder="Problem ID" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" />
+										<button class="form-control" onclick="Goproblem()">Go</button>
 									</form>
 								</td>
-								<td colspan="1">
-									<form class="form-search form-inline">
-										<input type="text" name="search" class="form-control search-query" placeholder="Keywords Title or Source">
-										<button type="submit" class="form-control">
-											查找 </button>
-										<div id="csrf"></div>
-									</form>
+
+								</form>
 								</td>
 								<td>
-									<button id="addBtn" class="form-control" style="display:none;" 	onclick="location.href='addproblem.html'">增加题目</button>
+									<button id="addBtn" class="form-control" style="display:none;" onclick="location.href='addproblem.html'">增加题目</button>
 								</td>
 							</tr>
 						</tbody>
@@ -137,14 +130,14 @@
 					<table id="problemset" width="90%" class="table table-striped">
 						<thead>
 							<tr class="toprow">
-								<th width="5" class="header"></th>
-								<th width="20" class="hidden-xs header">
+								<th width="5%" class="header"></th>
+								<th width="20%" class="hidden-xs header">
 									题目编号 </th>
 								<th class="header">
 									标题 </th>
 								<th class="hidden-xs header" width="10%">
 									类别 </th>
-								<th style="cursor:hand" width="120" class="header">
+								<th style="cursor:hand" width="20%" class="header">
 									是否通过 </th>
 							</tr>
 						</thead>
@@ -163,57 +156,37 @@
 									<div class="center"><a title="简单题" class="label label-primary type" style="display: inline-block;" href="">简单题</a>&nbsp;</div>
 								</td>
 								<td>
-									<div class="center pass">Yes</div>
+									<div class="center pass" style="color: red;">No</div>
 								</td>
 
 							</tr>
-							<tr class="oddrow" id="firstoddrow">
-								<td>
-									<div class="none"> </div>
-								</td>
-								<td class="hidden-xs">
-									<div class="center">1005</div>
-								</td>
-								<td>
-									<div class="left"><a href="problem.php?id=1005">Easy List Operations</a></div>
-								</td>
-								<td class="hidden-xs">
-									<div class="center"><a title="2010年浙江大学城市学院新生选拔赛" class="label label-primary" style="display: inline-block;"
-										 href="problemset.php?search=2010年浙江大学城市学院新生选拔赛">2010</a>&nbsp;</div>
-								</td>
-								<td>
-									<div class="center"><a href="status.php?problem_id=1005&amp;jresult=4">20</a></div>
-								</td>
-								<td>
-									<div class="center"><a href="status.php?problem_id=1005">123</a></div>
-								</td>
-							</tr>
+
 
 						</tbody>
 					</table>
-					<nav id="page" class="center">
+					<nav id="pagedown" class="center">
 						<ul class="pagination">
-							<li class="page-item"><a href="problemset.php?page=1">&lt;&lt;</a>
+							<li class="page-item"><a href="problemset.html?page=1">&lt;&lt;</a>
 							</li>
-							<li class="active page-item">
-								<a href="problemset.php?page=1">1</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=2">2</a></li>
+								<a href="problemset.html?page=1">1</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=3">3</a></li>
+								<a href="problemset.html?page=2">2</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=4">4</a></li>
+								<a href="problemset.html?page=3">3</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=5">5</a></li>
+								<a href="problemset.html?page=4">4</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=6">6</a></li>
+								<a href="problemset.html?page=5">5</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=7">7</a></li>
+								<a href="problemset.html?page=6">6</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=8">8</a></li>
+								<a href="problemset.html?page=7">7</a></li>
 							<li class="page-item">
-								<a href="problemset.php?page=9">9</a></li>
-							<li class="page-item"><a href="problemset.php?page=12">&gt;&gt;</a>
+								<a href="problemset.html?page=8">8</a></li>
+							<li class="page-item">
+								<a href="problemset.html?page=9">9</a></li>
+							<li class="page-item"><a href="problemset.html?page=9">&gt;&gt;</a>
 							</li>
 						</ul>
 					</nav>
@@ -232,61 +205,91 @@
 			</div>
 		</div>
 		<script>
-			function checkuser(){
-				var username=localStorage.getItem("account");
-				if (!username)
-				{
+			var page = window.location.search;
+			if (page)
+			page = page.slice(6);
+			else page="1";
+			var nowprage = 1000 + (page - 1) * 10;
+			var pg = document.getElementById("page");
+			pg.getElementsByClassName("page-item")[page].classList.add("active");
+			pg = document.getElementById("pagedown");
+			pg.getElementsByClassName("page-item")[page].classList.add("active");
+
+			function checkuser() {
+				var username = localStorage.getItem("account");
+				if (!username) {
 					alert("请先登录！");
 					window.location.href = "login.html";
 					//document.getElementById("addBtn").display="none";
-				}
-				else{
+				} else {
 					//document.getElementById("addp").display="none";
-					var drop=document.getElementsByClassName("dropdown")[0];
-					drop.style.display="none";
-					var user=document.getElementById("user");
-					user.style.display="block";
+					var drop = document.getElementsByClassName("dropdown")[0];
+					drop.style.display = "none";
+					var user = document.getElementById("user");
+					user.style.display = "block";
 					user.getElementsByClassName("aa")[0].textContent = "您好，" + username;
-					if (username=="admin")
-					document.getElementById("addBtn").style.display="block";
+					if (username == "admin")
+						document.getElementById("addBtn").style.display = "block";
 				}
 			}
 			checkuser();
+
 			function removeall(node) {
 				while (node.hasChildNodes())
 					node.removeChild(node.firstChild);
 			}
+			var username = localStorage.getItem("account");
 			var problembody = document.getElementById("problembody");
 			//console.log(problembody);
 			var firstproblem = document.getElementById("firstrow").cloneNode(true);
 			removeall(problembody);
 			var problems = [];
+
 			function recurTest(i, length) {
 				setTimeout(function() {
+
 					let req = new XMLHttpRequest();
-					req.open("get", "sql/problem?pid=" + (1000 + i), true);
+					req.open("get", "sql/problem?pid=" + (nowprage + i), true);
 					req.onload = function(e) {
-						var detail = JSON.parse(req.response)[0];
+						let detail = JSON.parse(req.response)[0];
 						if (!detail) return;
-						var problem = firstproblem.cloneNode(true);
+						let problem = firstproblem.cloneNode(true);
 						console.log(detail);
 						problem.getElementsByClassName("No")[0].textContent = detail.id;
 						problem.getElementsByClassName("title")[0].textContent = detail.title;
 						problem.getElementsByClassName("title")[0].href = "problem.html?id=" + detail.id;
 						problem.getElementsByClassName("type")[0].textContent = detail.type;
-						problem.getElementsByClassName("pass")[0].textContent = "No";
-						problembody.appendChild(problem);
+						let req2 = new XMLHttpRequest();
+						req2.open("get", "sql/passrecodeone?pid=" + (1000 + i) + "&&username=" + username, true);
+						req2.onload = function(e) {
+							let detail2 = JSON.parse(req2.response)[0];
+							if (detail2) {
+								problem.getElementsByClassName("pass")[0].textContent = "Yes";
+								problem.getElementsByClassName("pass")[0].style.color = "green";
+								problembody.appendChild(problem);
+								if (++i < length) {
+									recurTest(i, length);
+								}
+							} else {
+								problembody.appendChild(problem);
+								if (++i < length) {
+									recurTest(i, length);
+								}
+							}
+						}
+						req2.setRequestHeader("Content-Type", "application/json");
+						req2.send("");
+
+
 					}
 					req.setRequestHeader("Content-Type", "application/json");
 					req.send("");
-					if (++i < length) {
-						recurTest(i, length);
-					}
+
 				}, 100);
 			}
-			recurTest(1, 20);
+			recurTest(1, 10);
 		</script>
-		
+
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		<script src="jquery/jquery-1.11.0.min.js"></script>
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->

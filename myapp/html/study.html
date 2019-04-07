@@ -11,48 +11,168 @@
 			body {
 				height: 100%;
 			}
-			
+
 			img {
 				width: 100%;
 			}
-			
+
 			.btn {
 				font-size: x-small;
 			}
-			
+
 			.m {
 				font-size: 120px;
 			}
-			
+
 			@media (max-width: 500px) {
 				.m {
 					font-size: medium;
 				}
+			}
+			.boxx{
+				background-color: #ddd;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="container">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						 aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="./"><i class="icon-home"></i>MY-OnlineJudge</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+
+							<li><a href="problemset.html"> 问题集</a></li>
+							<li class="active"><a href="study.html"> 学习园</a></li>
+
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown ">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="profile">登录</span><span
+									 class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<!-- <script src="template/bs3/profile.php?1417751072"></script> -->
+									<li><a href="login.html">登录</a></li>&nbsp;<li><a href="register.html">注册</a></li>&nbsp;
+									<!--<li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
+								</ul>
+							</li>
+							<li id="user" display="none" style=""><a class="aa" href="user.html"> </a></li>
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+				</div>
+				<!--/.container-fluid -->
+			</nav>
+		</div>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-4 column">
+					<h2>
+						搜索
+					</h2>
+					<p>
+						搜索算法是利用计算机的高性能来有目的的穷举一个问题解空间的部分或所有的可能情况，从而求出问题的解的一种方法。现阶段一般有枚举算法、深度优先搜索、广度优先搜索、A*算法、回溯算法等，学会了搜索算法可以解决很多看似人脑解决不了的复杂问题。
+					</p>
+					<p>
+						<a class="btn" href="serch.html">了解更多»</a>
+					</p>
+				</div>
+				<div class="col-md-4 column boxx">
+					<h2>
+						贪心
+					</h2>
+					<p>
+						贪心算法（又称贪婪算法）是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的是在某种意义上的局部最优解。贪心算法不是对所有问题都能得到整体最优解，但对一些特定问题有非常好的效果。
+					</p>
+					<p>
+						<a class="btn" href="greey.html">了解更多»</a>
+					</p>
+				</div>
+				<div class="col-md-4 column">
+					<h2>
+						字符串
+					</h2>
+					<p>
+						字符串或串(String)是由数字、字母、下划线组成的一串字符。它是编程语言中表示文本的数据类型。在程序设计中，字符串为符号或数值的一个连续序列，通常以串的整体作为操作对象。熟练掌握字符串操作才能对各种输入格式的得心应手。
+					</p>
+					<p>
+						<a class="btn" href="string.html">了解更多»</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-4 column boxx">
+					<h2>
+						数据结构
+					</h2>
+					<p>
+						数据结构是计算机存储、组织数据的方式。数据结构是指相互之间存在一种或多种特定关系的数据元素的集合。通常情况下，精心选择的数据结构可以带来更高的运行或者存储效率。数据结构往往同高效的检索算法和索引技术有关。
+					</p>
+					<p>
+						<a class="btn" href="datastruct.html">了解更多 »</a>
+					</p>
+				</div>
+				<div class="col-md-4 column">
+					<h2>
+						动态规划
+					</h2>
+					<p>
+						动态规划算法是通过拆分问题，定义问题状态和状态之间的关系，使得问题能够以递推（或者说分治）的方式去解决。动态规划算法的基本思想与分治法类似，也是将待求解的问题分解为若干个子问题（阶段），按顺序求解子阶段
+					</p>
+					<p>
+						<a class="btn" href="dp.html">了解更多 »</a>
+					</p>
+				</div>
+				<div class="col-md-4 column boxx">
+					<h2>
+						数学问题
+					</h2>
+					<p>
+						在计算机问世后，使用计算机解决数学问题也成了一大热门问题，许多数学问题可以借助计算机来实现大规模的演算，但在这之前我们需要了解一些基本的计算机数学知识，知晓哪些问题是适合用计算机解决的，从而强化技巧，不断提高代码水平。
+					</p>
+					<p>
+						<a class="btn" href="math.html">了解更多 »</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="container">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<ul class="nav nav-pills">
-						<li>
-							<a href="index.html">首页</a>
-						</li>
-						<li>
-							<a href="problems.html">题库</a>
-						</li>
-						<li class="active">
-							<a href="study.html">学习</a>
-						</li>
 
-					</ul>
+					<p>
+						<hr>
+						此网站由杨嘉诚独立完成，任何问题请发送邮件至616530803@qq.com，谢谢合作。
+					</p>
 				</div>
 			</div>
 		</div>
 		<script>
-			
+			function checkuser() {
+				var username = localStorage.getItem("account");
+				if (!username) {
+
+				} else {
+					var drop = document.getElementsByClassName("dropdown")[0];
+					drop.style.display = "none";
+					var user = document.getElementById("user");
+					user.style.display = "block";
+					user.getElementsByClassName("aa")[0].textContent = "您好，" + username;
+				}
+			}
+			checkuser();
 		</script>
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		<script src="jquery/jquery-1.11.0.min.js"></script>

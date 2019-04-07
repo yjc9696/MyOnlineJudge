@@ -108,7 +108,8 @@ router.post('/insertproblem', upload.array("_file", 2), function(req, res, next)
 	console.log(req.files);
 	var ID = req.body.id;
 	let qq =
-		"INSERT INTO oj.problems (p_title,p_time,p_memory,p_description,p_input,p_output,p_sampleinput,p_sampleoutput) VALUES('" +
+		"INSERT INTO oj.problems (p_type,p_title,p_time,p_memory,p_description,p_input,p_output,p_sampleinput,p_sampleoutput) VALUES('" +
+		req.body.type + "','" +
 		req.body.name + "','" +
 		req.body.time + "','" +
 		req.body.memory + "','" +
@@ -146,6 +147,35 @@ router.get("/insertuser", function(req, res, next) {
 	connection.end();
 	//return res.json(ans);
 });
+router.get("/passrecord", function(req, res, next) {
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host: 'localhost',
+		user: 'root',
+		password: '123456'
+	});
+	connection.connect();
+	let qq = "SELECT * FROM oj.problems where p_id=" + req.query.pid;
+	console.log(qq);
+	connection.query(qq, function(err, rows, fields) {
+		if (err) {
+			throw err;
+		}
+		let q = "INSERT INTO oj.passrecord (username,p_id,p_type)VALUES('" +
+			req.query.username + "','" +
+			req.query.pid + "','" +
+			rows[0].p_type + "')";
+		console.log(q);
+		connection.query(q, function(err, rows, fields) {
+			if (err) {
+				throw err;
+			}
+			res.send();
+		});
+	});
+	//connection.end();
+	//return res.json(ans);
+});
 
 function getProw(row) {
 	now = {};
@@ -171,6 +201,8 @@ function getUrow(row) {
 	return now;
 }
 router.get("/problem", function(req, res, next) {
+	
+	if (!req.query.pid) return;
 	var mysql = require('mysql');
 	var connection = mysql.createConnection({
 		host: 'localhost',
@@ -192,6 +224,60 @@ router.get("/problem", function(req, res, next) {
 		for (var row of rows) {
 			console.log(row);
 			var now = getProw(row);
+			ans.push(now);
+		}
+		return res.json(ans);
+	});
+	connection.end();
+	//return res.json(ans);
+});
+router.get("/passrecodeone", function(req, res, next) {
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host: 'localhost',
+		user: 'root',
+		password: '123456'
+	});
+	connection.connect();
+	let qq = "SELECT * FROM oj.passrecord where p_id=" + req.query.pid + "&&username='" + req.query.username + "'";
+	console.log(qq);
+	var ans = [];
+	connection.query(qq, function(err, rows, fields) {
+		if (err) {
+
+			throw err;
+		}
+		if (!rows.length) {
+			return res.json([]);
+		}
+		for (var row of rows) {
+			console.log(row);
+			var now = getProw(row);
+			ans.push(now);
+		}
+		return res.json(ans);
+	});
+	connection.end();
+	//return res.json(ans);
+});
+router.get("/maxproblemid", function(req, res, next) {
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host: 'localhost',
+		user: 'root',
+		password: '123456'
+	});
+	connection.connect();
+	let qq = "SELECT MAX(p_id) FROM oj.problems ";
+	console.log(qq);
+	var ans = [];
+	connection.query(qq, function(err, rows, fields) {
+		for (var row of rows) {
+			dataString = JSON.stringify(row);
+			var data = JSON.parse(dataString);
+			console.log(Object.values(data)[0]);
+			var now = {}
+			now.id = Object.values(data)[0];
 			ans.push(now);
 		}
 		return res.json(ans);
@@ -228,6 +314,50 @@ router.get("/user", function(req, res, next) {
 	connection.end();
 	//return res.json(ans);
 });
+router.get("/personpassrecode", function(req, res, next) {
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host: 'localhost',
+		user: 'root',
+		password: '123456'
+	});
+	connection.connect();
+	let qq = "SELECT * FROM oj.passrecord where username='" + req.query.username + "'";
+	if (req.query.type != "total")
+		qq += "&&p_type='" + req.query.type + "'";
+	console.log(qq);
+	var ans = [];
+	connection.query(qq, function(err, rows, fields) {
+		if (err) {
+			throw err;
+		}
+		let s = 0;
+		for (var row of rows) {
+			//console.log(row);
+			s++;
+		}
+		var now = {};
+		now.solve = s;
+		ans.push(now);
+		return res.json(ans);
+	});
+	connection.end();
+	//return res.json(ans);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.get("/detail", function(req, res, next) {
 	var mysql = require('mysql');
 	var connection = mysql.createConnection({

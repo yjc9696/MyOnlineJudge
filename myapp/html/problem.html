@@ -50,18 +50,20 @@
 						<ul class="nav navbar-nav">
 
 							<li class="active"><a href="problemset.html"> 问题集</a></li>
-							<li><a href="problemset.html"> 学习园</a></li>
+							<li><a href="study.html"> 学习园</a></li>
 
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown">
+							<li class="dropdown ">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="profile">登录</span><span
 									 class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
+									<!-- <script src="template/bs3/profile.php?1417751072"></script> -->
 									<li><a href="login.html">登录</a></li>&nbsp;<li><a href="register.html">注册</a></li>&nbsp;
 									<!--<li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
 								</ul>
 							</li>
+							<li id="user" display="none" style=""><a class="aa" href="user.html"> </a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -69,11 +71,11 @@
 				<!--/.container-fluid -->
 			</nav>
 		</div>
-		<div class="panel panel-default">
+		<div class="panel panel-default container">
 			<div class="panel-heading">
 				<title>1001</title>
 				<center>
-					<h3 id="nowtitle">1001</h3><span class="green">时间限制: </span>1 Sec&nbsp;&nbsp;<span class="green">内存限制: </span>64
+					<h3 id="nowtitle">1001</h3><span class="green">时间限制: </span><span id="p_time"></span> Sec&nbsp;&nbsp;<span class="green">内存限制: </span></span><span id="p_memory"></span>
 					MB<br>
 
 				</center>
@@ -171,23 +173,42 @@ MMM BRAINS</span></pre>
 			</div>
 		</div>
 		<script>
+			function checkuser() {
+				var username = localStorage.getItem("account");
+				if (!username) {
+
+				} else {
+					var drop = document.getElementsByClassName("dropdown")[0];
+					drop.style.display = "none";
+					var user = document.getElementById("user");
+					user.style.display = "block";
+					user.getElementsByClassName("aa")[0].textContent = "您好，" + username;
+				}
+			}
+			checkuser();
 			var id = window.location.search;
 			id = id.slice(4);
 			console.log(id);
 			let req = new XMLHttpRequest();
-			
-			req.open("get", "sql/problem?pid="+id, true);
+
+			req.open("get", "sql/problem?pid=" + id, true);
 			req.onload = function(e) {
 				var detail = JSON.parse(req.response)[0];
 				console.log(detail);
+				if (!detail){
+					window.location.href="notfind.html";
+					return;
+				}
 				document.getElementById("nowtitle").textContent = detail.title;
 				document.getElementById("description").textContent = detail.description;
 				document.getElementById("input").textContent = detail.input;
 				document.getElementById("output").textContent = detail.output;
 				document.getElementById("sampleinput").textContent = detail.sampleinput;
-				document.getElementById("sampleoutput").textContent =detail.sampleoutput;
+				document.getElementById("sampleoutput").textContent = detail.sampleoutput;
 				document.getElementById("p_type").textContent = detail.type;
-				}
+				document.getElementById("p_time").textContent = detail.time;
+				document.getElementById("p_memory").textContent = detail.memory;
+			}
 			req.setRequestHeader("Content-Type", "application/json");
 			req.send("");
 		</script>
@@ -231,46 +252,74 @@ MMM BRAINS</span></pre>
 					alert("Your browser doesn't allow clipboard access!");
 				}
 			}
-			function CreateElementForExecCommand (textToClipboard) {
-			var forExecElement = document.createElement ("pre");
-			    // place outside the visible area
-			forExecElement.style.position = "absolute";
-			forExecElement.style.left = "-10000px";
-			forExecElement.style.top = "-10000px";
-			    // write the necessary text into the element and append to the document
-			forExecElement.textContent = textToClipboard;
-			document.body.appendChild (forExecElement);
-			    // the contentEditable mode is necessary for the  execCommand method in Firefox
-			forExecElement.contentEditable = true;
-			 
-			return forExecElement;
+
+			function CreateElementForExecCommand(textToClipboard) {
+				var forExecElement = document.createElement("pre");
+				// place outside the visible area
+				forExecElement.style.position = "absolute";
+				forExecElement.style.left = "-10000px";
+				forExecElement.style.top = "-10000px";
+				// write the necessary text into the element and append to the document
+				forExecElement.textContent = textToClipboard;
+				document.body.appendChild(forExecElement);
+				// the contentEditable mode is necessary for the  execCommand method in Firefox
+				forExecElement.contentEditable = true;
+
+				return forExecElement;
 			}
-			function SelectContent (element) {
-			    // first create a range
-			var rangeToSelect = document.createRange ();
-			rangeToSelect.selectNodeContents (element);
-			 
-			    // select the contents
-			var selection = window.getSelection ();
-			selection.removeAllRanges ();
-			selection.addRange (rangeToSelect);
+
+			function SelectContent(element) {
+				// first create a range
+				var rangeToSelect = document.createRange();
+				rangeToSelect.selectNodeContents(element);
+
+				// select the contents
+				var selection = window.getSelection();
+				selection.removeAllRanges();
+				selection.addRange(rangeToSelect);
 			}
 		</script>
 		<script>
 			function aftersubmit() {
-		
+
+			
 			}
-		
+			var id = window.location.search;
+			id = id.slice(4);
+			var username = localStorage.getItem("account");
 			function Submit() {
 				var myform = document.getElementById("myform");
 				var formData = new FormData(document.querySelector("form"));
 				console.log(formData);
 				console.log(document.querySelector("form"));
+				if (!myform.code.value){
+					alert("请选择上传文件！");
+					return;
+				}
+				
 				var xmlHttpRequest = new XMLHttpRequest();
 				alert('提交成功！请耐心等待');
-				xmlHttpRequest.open('post', 'sql/submit?id='+id);
+				xmlHttpRequest.open('post', 'sql/submit?id=' + id);
 				xmlHttpRequest.onload = function(resp) {
 					if (xmlHttpRequest.status == 200) {
+						
+						console.log(xmlHttpRequest.response.toString());
+						if(xmlHttpRequest.response.toString().trim()=='Correct'.trim())
+						{
+							let reqx = new XMLHttpRequest();
+							reqx.open("get", "sql/passrecodeone?pid="+ id+"&&username="+username, true);
+							reqx.onload= function(e) {
+								if (!JSON.parse(reqx.response)[0])
+								{
+									let req = new XMLHttpRequest();
+									req.open("get", "sql/passrecord?pid="+ id+"&&username="+username, true);
+									req.setRequestHeader("Content-Type", "application/json");
+									req.send("");
+								}
+							}
+							reqx.setRequestHeader("Content-Type", "application/json");
+							reqx.send("");
+						}
 						alert("结果为" + xmlHttpRequest.response);
 					} else {
 						alert('Error:' + xmlHttpRequest.status);

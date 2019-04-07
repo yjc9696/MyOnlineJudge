@@ -40,7 +40,7 @@
 									<!--<li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
 								</ul>
 							</li>
-							<li id="user" display="none" style=""><a class="aa" href=""> 你好，admin</a></li>
+							<li id="user" display="none" style=""><a class="aa" href="user.html"> 你好，admin</a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -52,7 +52,7 @@
 			<form id="myform" enctype='multipart/form-data' name="myform" action="sql/insert" method="post" target="nm_iframe">
 				<div class="form-group">
 					<label for="id">id</label>
-					<input type="text" class="form-control" id="id" name="id" placeholder="id">
+					<input type="text" class="form-control" id="id" name="id" placeholder="id" readonly="true">
 				</div>
 				<div class="form-group">
 					<label for="name">题目名称</label>
@@ -103,6 +103,20 @@
 			<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
 		</div>
 		<script>
+			function prepare(){
+				let req = new XMLHttpRequest();
+				req.open("get", "sql/maxproblemid");
+				req.onload = function(e) {
+					var detail = JSON.parse(req.response)[0];
+					console.log(detail);
+					if (!detail) return;
+					document.getElementById("id").setAttribute('placeholder',detail.id+1);
+				}
+				req.setRequestHeader("Content-Type", "application/json");
+				req.send("");
+			}
+			prepare();
+			
 			function checkuser() {
 				var username = localStorage.getItem("account");
 				if (!username) {
@@ -126,6 +140,14 @@
 
 			function Submit() {
 				var myform = document.getElementById("myform");
+				if (!myform.time.value) {
+					alert("请填写时间限制！");
+					return;
+				}
+				if (!myform.memory.value) {
+					alert("请填写内存限制！");
+					return;
+				}
 				if (!myform.name.value) {
 					alert("请填写题目描述！");
 					return;
@@ -164,7 +186,7 @@
 				xmlHttpRequest.open('post', 'sql/insertproblem');
 				xmlHttpRequest.onload = function(resp) {
 					if (xmlHttpRequest.status == 200) {
-						alert('提交成功！');
+						alert('添加成功！');
 						location.href = "problemset.html";
 					} else {
 						alert('Error:' + xmlHttpRequest.status);
