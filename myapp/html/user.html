@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+
+			img {
+				width: 100%;
+			}
+
+			.btn {
+				font-size: x-small;
+			}
+
+			.m {
+				font-size: 120px;
+			}
+
+			@media (max-width: 500px) {
+				.m {
+					font-size: medium;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						 aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="./"><i class="icon-home"></i>MY-OnlineJudge</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+
+							<li><a href="problemset.html"> 问题集</a></li>
+							<li><a href="study.html"> 学习园</a></li>
+
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown ">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="profile">登录</span><span
+									 class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<!-- <script src="template/bs3/profile.php?1417751072"></script> -->
+									<li><a href="login.html">登录</a></li>&nbsp;<li><a href="register.html">注册</a></li>&nbsp;
+									<!--<li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
+								</ul>
+							</li>
+							<li id="user" display="none" style=""><a class="aa" href="user.html"> </a></li>
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+				</div>
+				<!--/.container-fluid -->
+			</nav>
+		</div>
+		<div class=" container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<h3>
+						数据统计
+						<span>admin</span>
+					</h3>
+				</div>
+			</div>
+			<center>
+				<table class="table table-striped" id="statics" width="70%">
+					<tbody>
+						<tr>
+							<td>解决</td>
+							<td align="center" id="total">53</a>
+							</td>
+						</tr>
+						<tr>
+							<td>简单</td>
+							<td align="center" id="easy">53</a>
+							</td>
+						</tr>
+						<tr>
+							<td>搜索</td>
+							<td align="center" id="search">53</a>
+							</td>
+						</tr>
+						<tr>
+							<td>贪心</td>
+							<td align="center" id="greedy">53</a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>字符串</td>
+							<td align="center"id="string">53</a>
+							</td>
+						</tr>
+						<tr>
+							<td>数据结构</td>
+							<td align="center"id="datastruct">53</a>
+							</td>
+						</tr>
+						<tr>
+							<td>动态规划</td>
+							<td align="center"id="dp">53</a>
+							</td>
+						</tr>
+						<tr>
+							<td>数学问题</td>
+							<td align="center"id="math">53</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button id="btn-Logout" onclick="Logout()" class="center-block" style="width:50%;background-color: orangered;">注销</button>
+			</center>
+		</div>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+
+					<p>
+						<hr>
+						此网站由杨嘉诚独立完成，任何问题请发送邮件至616530803@qq.com，谢谢合作。
+					</p>
+				</div>
+			</div>
+		</div>
+		<script>
+			function checkuser() {
+				var username = localStorage.getItem("account");
+				if (!username) {
+
+				} else {
+					var drop = document.getElementsByClassName("dropdown")[0];
+					drop.style.display = "none";
+					var user = document.getElementById("user");
+					user.style.display = "block";
+					user.getElementsByClassName("aa")[0].textContent = "您好，" + username;
+				}
+			}
+			checkuser();
+
+			function Logout() {
+				localStorage.removeItem("account");
+				window.location.href = "index.html";
+			}
+		</script>
+		<script>
+			var username = localStorage.getItem("account");
+			function getTypeSolution(type) {
+				let req = new XMLHttpRequest();
+				req.open("get", "sql/personpassrecode?username=" + username + "&&type=" + type, true);
+				req.onload = function(e) {
+					var detail = JSON.parse(req.response)[0];
+					document.getElementById(type).textContent = detail.solve;
+				}
+				req.setRequestHeader("Content-Type", "application/json");
+				req.send("");
+			}
+			getTypeSolution("total");
+			getTypeSolution("easy");
+			getTypeSolution("search");
+			getTypeSolution("greedy");
+			getTypeSolution("string");
+			getTypeSolution("datastruct");
+			getTypeSolution("dp");
+			getTypeSolution("math");
+		</script>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="jquery/jquery-1.11.0.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>
