@@ -116,24 +116,35 @@
 			reg.addEventListener("click", function() {
 				var userName = document.querySelector("#userName").value;
 				var passWord = document.querySelector("#password").value;
-				if (localStorage.getItem(userName))
-					alert("用户已存在！");
-				else
 				if (userName.length > 20)
 					alert("用户名长度不能大于20！");
 				else {
-					var req = new XMLHttpRequest();
-					req.open("get", "sql/insertuser?username="+userName+"&password="+passWord);
+					let req = new XMLHttpRequest();
+					req.open("get", "sql/user?username="+userName, true);
 					req.onload = function(e) {
-						if (req.status == 200) {
-							alert("注册成功！");
-							window.location = "login.html";
-						} else {
-							alert('Error:' + req.status);
+						var detail = JSON.parse(req.response)[0];
+						if(detail){
+							alert("用户名已经被注册");
+						}
+						else
+						{
+							let req = new XMLHttpRequest();
+							req.open("get", "sql/insertuser?username="+userName+"&password="+passWord);
+							req.onload = function(e) {
+								if (req.status == 200) {
+									alert("注册成功！");
+									window.location = "login.html";
+								} else {
+									alert('Error:' + req.status);
+								}
+							}
+							req.setRequestHeader("Content-Type", "application/json");
+							req.send("");
 						}
 					}
 					req.setRequestHeader("Content-Type", "application/json");
 					req.send("");
+					
 				}
 			});
 		</script>

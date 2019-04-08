@@ -77,7 +77,6 @@ router.post('/submit', upload.single('code'), function(req, res, next) {
 
 });
 router.post('/insertproblem', upload.array("_file", 2), function(req, res, next) {
-	console.log(req.files);
 	fs.mkdir("data/" + req.body.id, function(err) {
 		if (err) {
 			return console.error(err);
@@ -105,7 +104,6 @@ router.post('/insertproblem', upload.array("_file", 2), function(req, res, next)
 		password: '123456'
 	});
 	connection.connect();
-	console.log(req.files);
 	var ID = req.body.id;
 	let qq =
 		"INSERT INTO oj.problems (p_type,p_title,p_time,p_memory,p_description,p_input,p_output,p_sampleinput,p_sampleoutput) VALUES('" +

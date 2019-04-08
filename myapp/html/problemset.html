@@ -135,7 +135,7 @@
 									题目编号 </th>
 								<th class="header">
 									标题 </th>
-								<th class="hidden-xs header" width="10%">
+								<th class="hidden-xs header" width="15%">
 									类别 </th>
 								<th style="cursor:hand" width="20%" class="header">
 									是否通过 </th>
@@ -153,7 +153,7 @@
 									<div class="left "><a class="title" href="">No Brainer</a></div>
 								</td>
 								<td class="hidden-xs">
-									<div class="center"><a title="简单题" class="label label-primary type" style="display: inline-block;" href="">简单题</a>&nbsp;</div>
+									<div class="center"><a title="类别" class="label label-primary type" style="display: inline-block;" href="#">简单题</a>&nbsp;</div>
 								</td>
 								<td>
 									<div class="center pass" style="color: red;">No</div>
@@ -258,9 +258,11 @@
 						problem.getElementsByClassName("No")[0].textContent = detail.id;
 						problem.getElementsByClassName("title")[0].textContent = detail.title;
 						problem.getElementsByClassName("title")[0].href = "problem.html?id=" + detail.id;
+						if(detail.type!="easy")
+						problem.getElementsByClassName("type")[0].href = detail.type+".html";
 						problem.getElementsByClassName("type")[0].textContent = detail.type;
 						let req2 = new XMLHttpRequest();
-						req2.open("get", "sql/passrecodeone?pid=" + (1000 + i) + "&&username=" + username, true);
+						req2.open("get", "sql/passrecodeone?pid=" + (nowprage + i) + "&&username=" + username, true);
 						req2.onload = function(e) {
 							let detail2 = JSON.parse(req2.response)[0];
 							if (detail2) {
@@ -287,7 +289,7 @@
 
 				}, 100);
 			}
-			recurTest(1, 10);
+			recurTest(1, 11);
 		</script>
 
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
