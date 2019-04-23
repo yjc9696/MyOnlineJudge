@@ -33,6 +33,7 @@
 	</head>
 
 	<body>
+		<title>Informatics E_Learning</title>
 		<div class="container">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
@@ -44,7 +45,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="./"><i class="icon-home"></i>MY-OnlineJudge</a>
+						<a class="navbar-brand" href="./"><i class="icon-home"></i>Informatics E_Learning</a>
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
@@ -73,61 +74,308 @@
 		</div>
 		<div class=" container">
 			<div class="row clearfix">
-				<div class="col-md-12 column">
+				<div class="col-md-12 column" s>
 					<h3>
 						数据统计
 						<span>admin</span>
+						<button style="float: right;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">能力测试</button>
+
 					</h3>
 				</div>
 			</div>
-			<center>
+			<div class="col-md-6 column">
 				<table class="table table-striped" id="statics" width="70%">
 					<tbody>
 						<tr>
 							<td>解决</td>
-							<td align="center" id="total">53</a>
-							</td>
+							<td align="center" id="total">53</a></td>
 						</tr>
 						<tr>
 							<td>简单</td>
-							<td align="center" id="easy">53</a>
-							</td>
+							<td align="center" id="easy">53</a></td>
 						</tr>
 						<tr>
 							<td>搜索</td>
-							<td align="center" id="search">53</a>
-							</td>
+							<td align="center" id="search">53</a></td>
 						</tr>
 						<tr>
 							<td>贪心</td>
-							<td align="center" id="greedy">53</a>
-							</td>
+							<td align="center" id="greedy">53</a></td>
 						</tr>
-						
 						<tr>
 							<td>字符串</td>
-							<td align="center"id="string">53</a>
-							</td>
+							<td align="center" id="string">53</a></td>
 						</tr>
 						<tr>
 							<td>数据结构</td>
-							<td align="center"id="datastruct">53</a>
-							</td>
+							<td align="center" id="datastruct">53</a></td>
 						</tr>
 						<tr>
 							<td>动态规划</td>
-							<td align="center"id="dp">53</a>
-							</td>
+							<td align="center" id="dp">53</a></td>
+						</tr>
+						<tr>
+							<td>图论</td>
+							<td align="center" id="graph">53</a></td>
+						</tr>
+						<tr>
+							<td>递归问题</td>
+							<td align="center" id="recur">53</a></td>
+						</tr>
+						<tr>
+							<td>分治问题</td>
+							<td align="center" id="divide">53</a></td>
 						</tr>
 						<tr>
 							<td>数学问题</td>
-							<td align="center"id="math">53</a>
-							</td>
+							<td align="center" id="math">53</a></td>
 						</tr>
 					</tbody>
 				</table>
 				<button id="btn-Logout" onclick="Logout()" class="center-block" style="width:50%;background-color: orangered;">注销</button>
-			</center>
+			</div>
+			<div class="col-md-6 column" id="chart-wrap"></div>
+		</div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+					</div>
+					<div id="modalbody" class="modal-body" style="height:500px; overflow:scroll;">
+						<div class="container">
+							<label for="name">贪心算法</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="greedy" value="option1"> 贪心结果一定是对的。
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="greedy" value="option2" id="greedytrue"> 贪心有时候会导致错误答案。
+								</label>
+							</div>
+							<label for="name">以下哪个"不属于"基本的搜索算法</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="search" value="option1"> 深度搜索
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="search" value="option2" id="searchtrue"> 随机搜索
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="search" value="option3"> 广度搜索
+								</label>
+							</div>
+							<label for="name">以下哪个算法"不属于"最短路算法</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="graph1"> SPFA
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph1"> Dijkstra
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph1" class="graphtrue"> Kruskal
+								</label>
+							</div>
+							<label for="name">Floyd算法的时间复杂度为</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="graph2"> O(N)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph2">O(N^2)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph2" class="graphtrue"> O(N^3)
+								</label>
+							</div>
+							<label for="name">SPFA算法在“最坏情况”下的时间复杂度为</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="graph3"> O(N)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph3" class="graphtrue"> O(N^2)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph3"> O(N*logN)
+								</label>
+							</div>
+							<label for="name">如果一棵树每条边的权值不同，其最小生成树是否是唯一的？</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="graph4" class="graphtrue"> 是
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph4"> 否
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph4"> 不确定，要看树的形态
+								</label>
+							</div>
+							<label for="name">目前你使用的建图方式为</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="graph5"> 邻接矩阵
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph5"> 二维数组
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="graph5" class="graphtrue"> 数组模拟链表
+								</label>
+							</div>
+							<label for="name">分治算法的时间效率一般是</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="divide1"> O(N)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="divide1" class="dividetrue"> O(N*log(N))
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="divide1"> O(N^2)
+								</label>
+							</div>
+							<label for="name">以下“不属于”可以进行分治算法的条件是</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="divide2"> 该问题的规模缩小到一定的程度就可以容易地解决
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="divide2"> 该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="divide2" class="dividetrue"> 该问题所分解出的各个子问题可以是相互关联的
+								</label>
+							</div>
+							<label for="name">以下属于二分算法适用的数组必要条件是</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="divide3"> 数组数据类型为整型
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="divide3" class="dividetrue"> 数组数据必须有序
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="divide3">数组长度不能太大
+								</label>
+							</div>
+							<label for="name">是否了解费马小定理</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="math1" class="mathtrue"> 是
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="math1"> 否
+								</label>
+							</div>
+							<label for="name">预处理出所有小于N的排列组合C(N,M)的最优时间效率为</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="math2"> O(N^3)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="math2" class="mathtrue"> O(N^2)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="math2"> O(N!)
+								</label>
+							</div>
+							<label for="name">预处理出所有小于N的素数集合的最优时间效率为</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="math3"> O(N^2)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="math3" class="mathtrue"> O(N)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="math3"> O(N*logN)
+								</label>
+							</div>
+							<label for="name">递归必须要设置，否则会死循环的是</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="recursive1" class="recursivetrue"> 递归出口
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="recursive1">递归内容
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="recursive1">递归入口
+								</label>
+							</div>
+							<label for="name">递归解决斐波那契问题的递归过程为</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="recursive2" class="recursivetrue"> return fib(x - 1) + fib(x - 2)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="recursive2">return fib(x) + fib(x - 1)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="recursive2">return fib(x + 1) + fib(x - 1)
+								</label>
+							</div>
+							<label for="name">递归无法结束时，通常“不会”出现的返回结果是</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="recursive3"> 运行时错误
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="recursive3" class="recursivetrue">答案错误
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="recursive3">运行超时
+								</label>
+							</div>
+							<label for="name">动态规划比起搜索的优势主要在于</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="dp1" class="dptrue">时间效率更高
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="dp1">答案更优秀
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="dp1">内存耗费少
+								</label>
+							</div>
+							<label for="name">背包问题的时间效率为（N为物品个数，M为背包容量）</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="dp2">O(N*M^2)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="dp2" class="dptrue">O(N*M)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="dp2">O(N^2*M)
+								</label>
+							</div>
+							<label for="name">以下“不属于”动态规划的特点是</label>
+							<div>
+								<label class="radio-inline">
+									<input type="radio" name="dp3">多阶段决策过程
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="dp3">求解具有某种最优性质的问题
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="dp3" class="dptrue">转移决策唯一
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Submit()">提交</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
 		</div>
 		<div class="container">
 			<div class="row clearfix">
@@ -141,6 +389,125 @@
 			</div>
 		</div>
 		<script>
+			function renderChart(data, namelist) {
+				var cw = document.getElementById("chart-wrap");
+				cw.innerHTML = "";
+				var max = 100;
+				var basehight = 400;
+				var percent = basehight / max;
+				var i = 0;
+				var basewidth = 17;
+				for (var index in data) {
+					var bar = document.createElement("div");
+					bar.id = "bar"+index;
+					bar.style.height = Math.round(percent * data[index]) + "px";
+					bar.style.width = "40px";
+					bar.style.left = (i * 2 * basewidth) + 30 + "px";
+					bar.style.marginLeft = (i * basewidth) + "px";
+					bar.style.position = "absolute";
+					bar.style.background = "none repeat scroll 0 0 pink";
+					bar.style.overflow = "hidden";
+					bar.setAttribute("title", index + "：" + data[index]);
+					bar.style.display = "block";
+					bar.style.top = basehight + 20 - Math.round(percent * data[index]) + "px";
+					cw.appendChild(bar);
+					var axis = document.createElement("div");
+					axis.id = "axis_" + i;
+					axis.style.width = "40px";
+					axis.style.left = (i * 2 * basewidth) + 30 + "px";
+					axis.style.marginLeft = (i * basewidth) + "px";
+					axis.style.textAlign = "center";
+					axis.style.position = "absolute";
+					axis.style.top = (basehight + 25) + "px";
+					axis.innerHTML = '<span style="font-size:10px; color:grey;"> ' + namelist[i] + '</span>';
+					cw.appendChild(axis);
+					i++;
+				}
+				for (var i = 0; i < 6; i++) {
+					var ayis = document.createElement("div");
+					ayis.style.width = "40px";
+					ayis.style.position = "absolute";
+					ayis.style.top = (basehight / 5 * i) + (20 - 6) + "px";
+					ayis.style.left = "0px";
+					ayis.innerHTML = '<span style="font-size:12px; color:grey;"> ' + Math.round(max - (max / 5) * i) + '%</span>';
+					cw.appendChild(ayis);
+					var line = document.createElement("div");
+					line.setAttribute("style",
+						"width:540px; left:25px; border-top:1px dotted grey; height:1px; line-height:1px; display:block; overflow:hidden; position:absolute; "
+					);
+					line.style.top = (basehight / 5 * i) + 20 + "px";
+					cw.appendChild(line);
+				}
+			}
+			var data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		
+			//var name = ['简单',"搜索","贪心","字符串","数据结构","动态规划","图论","递归","分治","数学"];
+			var namelist = new Array();
+			namelist.push(["简单"]);
+			namelist.push(["搜索"]);
+			namelist.push(["贪心"]);
+			namelist.push(["字符串"]);
+			namelist.push(["数据结构"]);
+			namelist.push(["动态规划"]);
+			namelist.push(["数学"]);
+			namelist.push(["图论"]);
+			namelist.push(["递归"]);
+			namelist.push(["分治"]);
+			console.log(namelist);
+			renderChart(data, namelist);
+		</script>
+		<script>
+			var username = localStorage.getItem("account");
+
+			function getanswer(now) {
+				let list = document.getElementsByClassName(now);
+				//console.log(list);
+				let total = list.length;
+				let trueanswer = 0;
+				for (let i = 0; i < total; i++) {
+					let item = list[i];
+					if (item.checked)
+						trueanswer++;
+				}
+				if (trueanswer > total / 2) return true;
+				return false;
+			}
+
+			function postability(now, bo) {
+				if (!bo) return;
+				let req = new XMLHttpRequest();
+				req.open("get", "sql/adduserability?username=" + username + "&&algorithmname=" + now, true);
+				req.onload = function(e) {}
+				req.setRequestHeader("Content-Type", "application/json");
+				req.send("");
+			}
+
+			function Submit() {
+				alert("提交成功，已为您推荐合适题目！")
+				let graph = getanswer("graphtrue");
+				let divide = getanswer("dividetrue");
+				let math = getanswer("mathtrue");
+				let dp = getanswer("dptrue");
+				let recursive = getanswer("recursivetrue");;
+				console.log("graph:" + graph);
+				console.log("dp:" + dp);
+				postability("graph", graph);
+				postability("divide", divide);
+				postability("math", math);
+				postability("dp", dp);
+				postability("recur", recursive);
+				// 				let req = new XMLHttpRequest();
+				// 				req.open("get", "sql/changeuserability?username=" + username + "&&greedy=" + greedy +
+				// 					"&&search=" + search + "&&graph=" + graph + "&&divide=" + divide + "&&math=" + math +
+				// 					"&&dp=" + dp + "&&recursive=" + recursive, true);
+				// 				req.onload = function(e) {
+				// 
+				// 				}
+				// 				req.setRequestHeader("Content-Type", "application/json");
+				// 				req.send("");
+
+			}
+
 			function checkuser() {
 				var username = localStorage.getItem("account");
 				if (!username) {
@@ -162,29 +529,52 @@
 		</script>
 		<script>
 			var username = localStorage.getItem("account");
-			function getTypeSolution(type) {
+
+			function getTypeSolution(type,index) {
 				let req = new XMLHttpRequest();
 				req.open("get", "sql/personpassrecode?username=" + username + "&&type=" + type, true);
 				req.onload = function(e) {
-					var detail = JSON.parse(req.response)[0];
-					document.getElementById(type).textContent = detail.solve;
+					let detail = JSON.parse(req.response)[0];
+					let first = detail.solve;
+					//document.getElementById(type).textContent = detail.solve;
+					let req2 = new XMLHttpRequest();
+					req2.open("get", "sql/totaltype?type=" + type, true);
+					req2.onload = function(e) {
+						let detail2 = JSON.parse(req2.response)[0];
+						let after = detail2.solve;
+						document.getElementById(type).textContent = "(" + first + "/" + after + ")";
+						if (index>=0){
+							document.getElementById("bar"+(index)).style.height=Math.round(400*first/after) + "px";
+							document.getElementById("bar"+(index)).style.top=400 + 20 - Math.round(400*first/after) + "px";				
+						}
+						
+					}
+					req2.setRequestHeader("Content-Type", "application/json");
+					req2.send("");
 				}
 				req.setRequestHeader("Content-Type", "application/json");
 				req.send("");
 			}
-			getTypeSolution("total");
-			getTypeSolution("easy");
-			getTypeSolution("search");
-			getTypeSolution("greedy");
-			getTypeSolution("string");
-			getTypeSolution("datastruct");
-			getTypeSolution("dp");
-			getTypeSolution("math");
+			getTypeSolution("total",-1);
+			getTypeSolution("easy",0);
+			getTypeSolution("search",1);
+			getTypeSolution("greedy",2);
+			getTypeSolution("string",3);
+			getTypeSolution("datastruct",4);
+			getTypeSolution("dp",5);
+			getTypeSolution("math",6);
+			getTypeSolution("graph",7);
+			getTypeSolution("recur",8);
+			getTypeSolution("divide",9);
 		</script>
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		<script src="jquery/jquery-1.11.0.min.js"></script>
+
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jchart.js"></script>
+		
+
 	</body>
 
 </html>

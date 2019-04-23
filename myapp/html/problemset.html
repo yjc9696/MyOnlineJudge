@@ -29,10 +29,22 @@
 					font-size: medium;
 				}
 			}
+			.postalicon {
+			/* float: left; */
+			width: 27px;
+			height: 14px;
+			color: #fff;
+			font-size: 12px;
+			margin-left: 4px;
+			 text-align: center; 
+			 vertical-align: middle; 
+			background: #f85300;
+		}
 		</style>
 	</head>
 
 	<body>
+		<title>Informatics E_Learning</title>
 		<div class="container">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
@@ -44,7 +56,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="./"><i class="icon-home"></i>MY-OnlineJudge</a>
+						<a class="navbar-brand" href="./"><i class="icon-home"></i>Informatics E_Learning</a>
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
@@ -73,10 +85,10 @@
 		</div>
 		<div class="container">
 			<div class="jumbotron center">
-				<marquee style="margin-top:10px" id="broadcast" direction="left" scrollamount="3" scrolldelay="50" onmouseover="this.stop()"
+				<marquee style="margin-top:10px" id="broadcast" direction="left" scrollamount="5" scrolldelay="10" onmouseover="this.stop()"
 				 onmouseout="this.start()" class="toprow">
 					<center>
-						Welcome to MY-OnlineJudge !
+						欢迎来到Informatics E_Learning !如果是刚刚注册的用户，建议到个人界面进行能力测试哦~
 					</center>
 				</marquee>
 				<center>
@@ -150,7 +162,7 @@
 									<div class="center No">1004</div>
 								</td>
 								<td>
-									<div class="left "><a class="title" href="">No Brainer</a></div>
+									<div class="left "><a class="title" href="">No Brainer</a><span class="postalicon">推荐</span></div>
 								</td>
 								<td class="hidden-xs">
 									<div class="center"><a title="类别" class="label label-primary type" style="display: inline-block;" href="#">简单题</a>&nbsp;</div>
@@ -207,8 +219,8 @@
 		<script>
 			var page = window.location.search;
 			if (page)
-			page = page.slice(6);
-			else page="1";
+				page = page.slice(6);
+			else page = "1";
 			var nowprage = 1000 + (page - 1) * 10;
 			var pg = document.getElementById("page");
 			pg.getElementsByClassName("page-item")[page].classList.add("active");
@@ -240,49 +252,60 @@
 			}
 			var username = localStorage.getItem("account");
 			var problembody = document.getElementById("problembody");
-			//console.log(problembody);
 			var firstproblem = document.getElementById("firstrow").cloneNode(true);
 			removeall(problembody);
 			var problems = [];
 
-			function recurTest(i, length) {
-				setTimeout(function() {
+			function basetype(type) {
+				if ((type=="search")||(type=="datastruct")||(type=="greedy")||(type=="string")||(type=="easy")) return true;
+				return false;
+			}
 
+			function recurTest(i, length) {
+
+				setTimeout(function() {
 					let req = new XMLHttpRequest();
 					req.open("get", "sql/problem?pid=" + (nowprage + i), true);
 					req.onload = function(e) {
 						let detail = JSON.parse(req.response)[0];
 						if (!detail) return;
 						let problem = firstproblem.cloneNode(true);
-						console.log(detail);
+						problem.getElementsByClassName("postalicon")[0].style.display = "none";
 						problem.getElementsByClassName("No")[0].textContent = detail.id;
 						problem.getElementsByClassName("title")[0].textContent = detail.title;
 						problem.getElementsByClassName("title")[0].href = "problem.html?id=" + detail.id;
-						if(detail.type!="easy")
-						problem.getElementsByClassName("type")[0].href = detail.type+".html";
+						if (detail.type != "easy")
+							problem.getElementsByClassName("type")[0].href = detail.type + ".html";
 						problem.getElementsByClassName("type")[0].textContent = detail.type;
-						let req2 = new XMLHttpRequest();
-						req2.open("get", "sql/passrecodeone?pid=" + (nowprage + i) + "&&username=" + username, true);
-						req2.onload = function(e) {
-							let detail2 = JSON.parse(req2.response)[0];
-							if (detail2) {
-								problem.getElementsByClassName("pass")[0].textContent = "Yes";
-								problem.getElementsByClassName("pass")[0].style.color = "green";
-								problembody.appendChild(problem);
-								if (++i < length) {
-									recurTest(i, length);
-								}
-							} else {
-								problembody.appendChild(problem);
-								if (++i < length) {
-									recurTest(i, length);
+						let req3 = new XMLHttpRequest();
+						req3.open("get", "sql/userability?username=" + username+"&&algorithmname="+detail.type, true);
+						req3.onload = function(e) {
+							let detail3 = JSON.parse(req3.response)[0];
+							if (detail3||basetype(detail.type))
+								problem.getElementsByClassName("postalicon")[0].style.display = "inline-block";
+							let req2 = new XMLHttpRequest();
+							req2.open("get", "sql/passrecodeone?pid=" + (nowprage + i) + "&&username=" + username, true);
+							req2.onload = function(e) {
+								let detail2 = JSON.parse(req2.response)[0];
+								if (detail2) {
+									problem.getElementsByClassName("pass")[0].textContent = "Yes";
+									problem.getElementsByClassName("pass")[0].style.color = "green";
+									problembody.appendChild(problem);
+									if (++i < length) {
+										recurTest(i, length);
+									}
+								} else {
+									problembody.appendChild(problem);
+									if (++i < length) {
+										recurTest(i, length);
+									}
 								}
 							}
+							req2.setRequestHeader("Content-Type", "application/json");
+							req2.send("");
 						}
-						req2.setRequestHeader("Content-Type", "application/json");
-						req2.send("");
-
-
+						req3.setRequestHeader("Content-Type", "application/json");
+						req3.send("");
 					}
 					req.setRequestHeader("Content-Type", "application/json");
 					req.send("");

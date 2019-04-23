@@ -32,10 +32,20 @@
 			.boxx{
 				background-color: #ddd;
 			}
+			.k-title{
+				font-size: 50px;
+			}
+			.k-count{
+				font-size: 40px;
+			}
+			.k-des{
+				font-size: 20px;
+			}
 		</style>
 	</head>
 
 	<body>
+		<title>Informatics E_Learning</title>
 		<div class="container">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
@@ -47,7 +57,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="./"><i class="icon-home"></i>MY-OnlineJudge</a>
+						<a class="navbar-brand" href="./"><i class="icon-home"></i>Informatics E_Learning</a>
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
@@ -75,75 +85,153 @@
 			</nav>
 		</div>
 		<div class="container">
-			<div class="row clearfix">
-				<div class="col-md-4 column">
-					<h2>
-						搜索
-					</h2>
-					<p>
-						搜索算法是利用计算机的高性能来有目的的穷举一个问题解空间的部分或所有的可能情况，从而求出问题的解的一种方法。现阶段一般有枚举算法、深度优先搜索、广度优先搜索、A*算法、回溯算法等，学会了搜索算法可以解决很多看似人脑解决不了的复杂问题。
-					</p>
-					<p>
-						<a class="btn" href="search.html">了解更多»</a>
-					</p>
-				</div>
-				<div class="col-md-4 column boxx">
-					<h2>
-						贪心
-					</h2>
-					<p>
-						贪心算法（又称贪婪算法）是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的是在某种意义上的局部最优解。贪心算法不是对所有问题都能得到整体最优解，但对一些特定问题有非常好的效果。
-					</p>
-					<p>
-						<a class="btn" href="greedy.html">了解更多»</a>
-					</p>
-				</div>
-				<div class="col-md-4 column">
-					<h2>
-						字符串
-					</h2>
-					<p>
-						字符串或串(String)是由数字、字母、下划线组成的一串字符。它是编程语言中表示文本的数据类型。在程序设计中，字符串为符号或数值的一个连续序列，通常以串的整体作为操作对象。熟练掌握字符串操作才能对各种输入格式的得心应手。
-					</p>
-					<p>
-						<a class="btn" href="string.html">了解更多»</a>
-					</p>
-				</div>
-			</div>
+			<h2 style="text-align: center;">推荐学习算法拓扑图</h2>
+			<img src="img/tuopu.jpg">
 		</div>
 		<div class="container">
 			<div class="row clearfix">
 				<div class="col-md-4 column boxx">
-					<h2>
-						数据结构
-					</h2>
-					<p>
-						数据结构是计算机存储、组织数据的方式。数据结构是指相互之间存在一种或多种特定关系的数据元素的集合。通常情况下，精心选择的数据结构可以带来更高的运行或者存储效率。数据结构往往同高效的检索算法和索引技术有关。
+					<div style="display: inline-block;">
+						<span class="k-title">
+							搜索
+						</span>
+						<span class="k-count" id="search">
+							(1/32)
+						</span>
+					</div>
+					<p class="k-des">
+						利用计算机解决规模小但很复杂的难题。
 					</p>
 					<p>
-						<a class="btn" href="datastruct.html">了解更多 »</a>
+						<a style="font-size: 20px;" class="btn" href="search.html">了解更多»</a>
 					</p>
 				</div>
 				<div class="col-md-4 column">
-					<h2>
-						动态规划
-					</h2>
-					<p>
-						动态规划算法是通过拆分问题，定义问题状态和状态之间的关系，使得问题能够以递推（或者说分治）的方式去解决。动态规划算法的基本思想与分治法类似，也是将待求解的问题分解为若干个子问题（阶段），按顺序求解子阶段
+					<div style="display: inline-block;">
+						<span class="k-title">
+							贪心
+						</span>
+						<span class="k-count" id="greedy">
+							(1/32)
+						</span>
+					</div>
+					<p class="k-des">
+						你觉得对的规律实际上就是对的。
 					</p>
 					<p>
-						<a class="btn" href="dp.html">了解更多 »</a>
+						<a style="font-size: 20px;" class="btn" href="greedy.html">了解更多»</a>
 					</p>
 				</div>
 				<div class="col-md-4 column boxx">
-					<h2>
-						数学问题
-					</h2>
-					<p>
-						在计算机问世后，使用计算机解决数学问题也成了一大热门问题，许多数学问题可以借助计算机来实现大规模的演算，但在这之前我们需要了解一些基本的计算机数学知识，知晓哪些问题是适合用计算机解决的，从而强化技巧，不断提高代码水平。
+					<div style="display: inline-block;">
+						<span class="k-title">
+							字符串
+						</span>
+						<span class="k-count" id="string">
+							(1/32)
+						</span>
+					</div>
+					<p class="k-des">
+						学会字符串处理，输入数据都不怕。
 					</p>
 					<p>
-						<a class="btn" href="math.html">了解更多 »</a>
+						<a style="font-size: 20px;" class="btn" href="string.html">了解更多»</a>
+					</p>
+				</div>
+				<div class="col-md-4 column">
+					<div style="display: inline-block;">
+						<span class="k-title">
+							数据结构
+						</span>
+						<span class="k-count" id="datastruct">
+							(1/32)
+						</span>
+					</div>
+					<p class="k-des">
+						数据结构是所有算法的基石。
+					</p>
+					<p>
+						<a style="font-size: 20px;" class="btn" href="datastruct.html">了解更多»</a>
+					</p>
+				</div>
+				<div class="col-md-4 column boxx">
+					<div style="display: inline-block;">
+						<span class="k-title">
+							动态规划
+						</span>
+						<span class="k-count" id="dp">
+							(1/32)
+						</span>
+					</div>
+					<p class="k-des">
+						优美的动态规划设计，就是艺术品。
+					</p>
+					<p>
+						<a style="font-size: 20px;" class="btn" href="dp.html">了解更多»</a>
+					</p>
+				</div>
+				<div class="col-md-4 column">
+					<div style="display: inline-block;">
+						<span class="k-title">
+							递归/递推
+						</span>
+						<span class="k-count" id="recursive">
+							(10/32)
+						</span>
+					</div>
+					<p class="k-des">
+						计算机可不会绕晕自己。
+					</p>
+					<p>
+						<a style="font-size: 20px;" class="btn" href="recursive.html">了解更多»</a>
+					</p>
+				</div>
+				<div class="col-md-4 column boxx">
+					<div style="display: inline-block;">
+						<span class="k-title">
+							数学问题
+						</span>
+						<span class="k-count" id="math">
+							(1/32)
+						</span>
+					</div>
+					<p class="k-des">
+						其实信息学的本质，就是数学。
+					</p>
+					<p>
+						<a style="font-size: 20px;" class="btn" href="math.html">了解更多»</a>
+					</p>
+				</div>
+				<div class="col-md-4 column">
+					<div style="display: inline-block;">
+						<span class="k-title">
+							分治
+						</span>
+						<span class="k-count"id="divide">
+							(1/32)
+						</span>
+					</div>
+					<p class="k-des">
+						分而治之，可把大事化小，小事化了。
+					</p>
+					<p>
+						<a style="font-size: 20px;" class="btn" href="divide.html">了解更多»</a>
+					</p>
+				</div>
+				<div class="col-md-4 column boxx">
+					<div style="display: inline-block;">
+						<span class="k-title">
+							图论
+						</span>
+						<span class="k-count"id="graph">
+							(1/32)
+						</span>
+					</div>
+					<p class="k-des">
+						图问题存在于我们身边的每一个角落。
+					</p>
+					<p>
+						<a style="font-size: 20px;" class="btn" href="graph.html">了解更多»</a>
 					</p>
 				</div>
 			</div>
@@ -151,7 +239,6 @@
 		<div class="container">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-
 					<p>
 						<hr>
 						此网站由杨嘉诚独立完成，任何问题请发送邮件至616530803@qq.com，谢谢合作。
@@ -173,6 +260,51 @@
 				}
 			}
 			checkuser();
+		</script>
+		<script>
+			var username = localStorage.getItem("account");
+
+			function getTypeSolution(type) {
+				let req = new XMLHttpRequest();
+				req.open("get", "sql/personpassrecode?username=" + username + "&&type=" + type, true);
+				req.onload = function(e) {
+					let detail = JSON.parse(req.response)[0];
+					let first = detail.solve;
+					//document.getElementById(type).textContent = detail.solve;
+					let req2 = new XMLHttpRequest();
+					req2.open("get", "sql/totaltype?type=" + type, true);
+					req2.onload = function(e) {
+						let detail2 = JSON.parse(req2.response)[0];
+						let after = detail2.solve;
+						document.getElementById(type).textContent = "(" + first + "/" + after + ")";
+						if (first>=after/2)
+						postuserability(username,type);
+					}
+					req2.setRequestHeader("Content-Type", "application/json");
+					req2.send("");
+				}
+				req.setRequestHeader("Content-Type", "application/json");
+				req.send("");
+			}
+			function postuserability(username,algorithmname)
+			{
+				let req = new XMLHttpRequest();
+				req.open("get", "sql/adduserability?username=" + username + "&&algorithmname=" + algorithmname, true);
+				req.onload = function(e) {}
+				req.setRequestHeader("Content-Type", "application/json");
+				req.send("");
+			}
+			//getTypeSolution("total");
+			//getTypeSolution("easy");
+			getTypeSolution("search");
+			getTypeSolution("greedy");
+			getTypeSolution("string");
+			getTypeSolution("datastruct");
+			getTypeSolution("dp");
+			getTypeSolution("math");
+			getTypeSolution("graph");
+			getTypeSolution("divide");
+			getTypeSolution("recursive");
 		</script>
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		<script src="jquery/jquery-1.11.0.min.js"></script>
