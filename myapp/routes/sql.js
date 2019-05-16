@@ -10,18 +10,22 @@ var isTLE = false;
 var child_process = require("child_process");
 module.exports = router;
 /* GET users listing. */
-function runbat(res) {
+var running=new Array(100);
+for (let i=0;i<running.length;i++) running[i]=0;
+function runbat(res,evaluation) {
 	child_process.execFile("run.bat", null, {
-		cwd: 'D:\\MyOnlineJudge\\myapp\\cpp'
+		cwd: 'D:\\MyOnlineJudge\\myapp\\evaluation\\'+evaluation
 	}, function(error, stdout, stderr) {
 		if (error !== null) {
 			console.log("exec error" + error)
 		} else console.log("运行bat成功");
 		console.log('stdout: ' + stdout);
 		console.log('stderr: ' + stderr);
+		console.log(parseInt(evaluation.substring(10)));
+		running[parseInt(evaluation.substring(10))]=0;
 		if (isTLE) return;
 		if (stderr == "")
-			fs.readFile('cpp/result.txt', 'utf8', function(err, data) {
+			fs.readFile('evaluation/'+evaluation+'/result.txt', 'utf8', function(err, data) {
 				console.log(data);
 				res.send(data);
 			});
@@ -30,45 +34,67 @@ function runbat(res) {
 	});
 }
 
-function prepare2(res, id) {
+function prepare2(res, id,evaluation) {
 	fs.readFile('data/' + id + '/' + id + '.out', 'utf8', function(err, data) {
-		fs.writeFile("cpp/std.out", data, function(error) {
+		fs.writeFile("evaluation/"+evaluation+"/std.out", data, function(error) {
 			if (error) {
 				throw error;
 			} else {
 				console.log("输出文件准备完毕");
 			}
-			runbat(res);
+			runbat(res,evaluation);
 		});
 	});
 }
 
-function prepare(res, id) {
+function prepare(res, id,evaluation) {
 	fs.readFile('data/' + id + '/' + id + '.in', 'utf8', function(err, data) {
-		fs.writeFile("cpp/src.in", data, function(error) {
+		fs.writeFile("evaluation/"+evaluation+"/src.in", data, function(error) {
 			if (error) {
 				throw error;
 			} else {
 				console.log("输入文件准备完毕");
 			}
-			prepare2(res, id);
+			prepare2(res, id,evaluation);
 		});
 	});
 
 }
-router.post('/submit', upload.single('code'), function(req, res, next) {
-	fs.rename(req.file.path, "cpp/" + "src.cpp", function(err) {
-		if (err) {
-			throw err;
-		}
-		console.log('上传成功!');
-		isTLE = false;
-		res.setTimeout(6000, function(res) {
-			isTLE = true;
-			this.send('运行超时\n');
+function findIdleEvaluation(i, length,req,res,next) {
+	let evaluation="evaluation"+i;
+	if(running[i]==0){
+		running[i]=1;
+		console.log('评测机：'+i+'空闲');
+		fs.rename(req.file.path, "evaluation/"+evaluation+"/" + "src.cpp", function(err) {
+			if (err) {
+				throw err;
+			}
+			console.log('上传成功!');
+			isTLE = false;
+			res.setTimeout(6000, function(res) {
+				isTLE = true;
+				let taskkill_command = 'taskkill /im '+evaluation+'.exe /f';
+				child_process.exec(taskkill_command,{maxBuffer: 5000 * 1024},function(err, stdout, stderr){
+					if(err){
+						console.log('关闭进程异常：'+err);
+					}
+					console.log('超时进程关闭成功');
+
+				});
+				this.send('运行超时\n');
+			});
+			prepare(res, req.query.id,evaluation);
 		});
-		prepare(res, req.query.id);
-	});
+	}
+	else
+	{
+		if (++i<length)
+		findIdleEvaluation(i,length,req,res,next);
+	}
+}
+router.post('/submit', upload.single('code'), function(req, res, next) {
+	findIdleEvaluation(1, 11,req,res,next);
+	
 });
 router.post('/insertproblem', upload.array("_file", 2), function(req, res, next) {
 	fs.mkdir("data/" + req.body.id, function(err) {
